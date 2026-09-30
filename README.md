@@ -30,4 +30,25 @@ Seguridad: Implementar certificados ECDSA, forzar conexiones seguras (HSTS) y ev
 
 Resolución de Problemas (Troubleshooting): Diagnosticar y reparar fallos de configuración provocados intencionadamente en la red, en los certificados o en la comunicación entre contenedores.
 
+[ 👤 Cliente web ]
+               │
+               │ (Tráfico exterior 443/HTTPS)
+               ▼
+  +--------------------------+
+  |  🛡️ Nginx (Proxy)        |
+  |  Bloquea exceso de reqs  |
+  +--------------------------+
+               :
+               : (Tráfico interno Docker)
+               : (Línea intercortada)
+               ▼
+  +--------------------------+
+  |  ⚙️ Apache (Backend)     |
+  |  Puerto oculto (Ej: 8080)|
+  +--------------------------+
+          /          \
+         /            \
+ [ 🌐 Marca 1 ]  [ 🔒 Marca 2 ]
+
 Práctica realizada para el curso 2026/2027.
+
